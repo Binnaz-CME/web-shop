@@ -1,7 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { Box, Image, Stack } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-// import { useState } from 'react'
 import "./App.css";
 
 import ProductDetail from "./pages/ProductDetail";
@@ -12,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import Nav from "./components/Nav";
 
 function App() {
+  
   return (
     <div>
       <Nav />

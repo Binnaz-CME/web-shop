@@ -1,7 +1,7 @@
 import React from "react";
-import { productsState } from "../stores/poducts/atom";
+import { productsState } from "../stores/products/atom";
 import { useRecoilValue } from "recoil";
-import { Box, Image, Center, Text, Heading } from "@chakra-ui/react";
+import { Box, Image, Center, Text, Heading,Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Product() {
@@ -10,8 +10,8 @@ function Product() {
   return (
     <>
       {products.map((product) => (
-        <Box bg="GhostWhite" key={product.id} display="flex" alignItems="flex-start">
-          <Link to="/product:id">
+       <Box bg="GhostWhite" key={product.id} display="flex" alignItems="flex-start">
+          <Link to={`/products/${product.id}`}>
             <Center>
               <Image
               margin="1em"
@@ -25,7 +25,7 @@ function Product() {
             <Text color="gray.500" fontSize="sm">
               {product.description}
             </Text>
-            <Text marginTop="1em" fontWeight="bold" fontSize="sm">{product.price}$</Text>
+            <Text marginTop="1em" fontWeight="bold" fontSize="sm">${product.price}</Text>
           </Link>
         </Box>
       ))}
