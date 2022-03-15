@@ -1,9 +1,25 @@
-import React from 'react'
+import React from "react";
+import { Container, Heading, Text, Stack, SimpleGrid } from "@chakra-ui/react";
+
+import Product from "../components/Product";
 
 function Products() {
   return (
-    <div>Products</div>
-  )
+    <Container maxWidth="container.lg">
+      <Stack alignItems="center">
+        <Heading>My webshop</Heading>
+        <Text>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+          Necessitatibus, qui ipsam? Praesentium nulla neque quibusdam non animi
+          quia! Voluptatibus inventore quod saepe iusto molestias veritatis quos
+          aspernatur eum minus eligendi?
+        </Text>
+        <SimpleGrid minChildWidth="250px" gap="3em" padding="3em">
+          <Product />
+        </SimpleGrid>
+      </Stack>
+    </Container>
+  );
 }
 
-export default Products
+export default Products;
