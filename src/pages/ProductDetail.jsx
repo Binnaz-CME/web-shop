@@ -2,53 +2,54 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { productsState } from "../stores/products/atom";
 import { useRecoilValue } from "recoil";
-import { Box, Center, Image, Heading, Text, Button } from "@chakra-ui/react";
-import { cartState } from "../stores/cart/atom";
-import { useRecoilState } from "recoil";
+import {
+  Box,
+  Image,
+  Heading,
+  Text,
+  Button,
+  Flex,
+  Container,
+} from "@chakra-ui/react";
+
+import useCart from "../hooks/useCart";
 
 function ProductDetail() {
   const products = useRecoilValue(productsState);
   const params = useParams();
-  const [cartItems, setCartItems] = useRecoilState(cartState);
-  console.log(cartItems);
 
   const product = products.find(
     (product) => product.id === parseInt(params.productId)
   );
 
-  function onAdd() {
-    const exist = cartItems.find((item) => item.id === product.id);
-    if (exist) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id ? { ...exist, qty: exist.qty + 1 } : item
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...product, qty: 1 }]);
-    }
-  }
+  const { onAdd } = useCart();
 
   return (
-    <Box>
-      <Center>
-        <Image
-          margin="1em"
-          maxWidth="10em"
-          boxSize="150px"
-          objectFit="fit"
-          src={product.image}
-        />
-      </Center>
-      <Heading fontSize="md">{product.title}</Heading>
-      <Text color="gray.500" fontSize="sm">
-        {product.description}
-      </Text>
-      <Text marginTop="1em" fontWeight="bold" fontSize="sm">
-        {product.price}$
-      </Text>
-      <Button onClick={() => onAdd(product)}>Add to cart</Button>
-    </Box>
+    <Container maxWidth="container.lg">
+      <Box maxW="40rem">
+        <Flex alignItems="center">
+          <Image
+            margin="1em"
+            maxWidth="20em"
+            objectFit="fit"
+            src={product.image}
+          />
+
+          <Box flex="1">
+            <Heading fontSize="md">{product.title}</Heading>
+            <Text color="gray.500" fontSize="sm">
+              {product.description}
+            </Text>
+            <Text marginTop="1em" fontWeight="bold" fontSize="sm">
+              {product.price}$
+            </Text>
+            <Button m="1em" onClick={() => onAdd(product)}>
+              Add to cart
+            </Button>
+          </Box>
+        </Flex>
+      </Box>
+    </Container>
   );
 }
 

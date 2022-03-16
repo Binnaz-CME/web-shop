@@ -1,7 +1,7 @@
 import React from "react";
 import { productsState } from "../stores/products/atom";
 import { useRecoilValue } from "recoil";
-import { Box, Image, Center, Text, Heading,Button } from "@chakra-ui/react";
+import { Box, Image, Center, Text, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Product() {
