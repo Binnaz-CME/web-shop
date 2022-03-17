@@ -1,9 +1,11 @@
 // import { useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { cartState } from "../stores/cart/atom";
-import { useRecoilState } from "recoil";
+import { selectState } from "../stores/select/atom";
 
 function useCart() {
   const [cartItems, setCartItems] = useRecoilState(cartState);
+  const [selectValue, setSelectValue] = useRecoilState(selectState);
 
   function onAdd(chosenProduct) {
     const exist = cartItems.find((item) => item.id === chosenProduct.id);
@@ -14,12 +16,21 @@ function useCart() {
         )
       );
     } else {
-      setCartItems([...cartItems, { ...chosenProduct, qty: 1 }]);
+      setCartItems([...cartItems, { ...chosenProduct, qty: selectValue }]);
     }
   }
 
-  function onRemove() {
-    console.log("remove");
+  function onRemove(chosenProduct) {
+    const exist = cartItems.find((item) => item.id === chosenProduct.id);
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((item) => item.id !== chosenProduct.id));
+    } else {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === chosenProduct.id ? { ...exist, qty: exist.qty - 1 } : item
+        )
+      );
+    }
   }
 
   return { onAdd, onRemove };

@@ -1,28 +1,35 @@
 import React from "react";
-import { Container, Text, Heading, Button, Box } from "@chakra-ui/react";
+import { Container, Text, Heading, Button, Box, Flex, Stack } from "@chakra-ui/react";
 import { cartState } from "../stores/cart/atom";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import useCart from "../hooks/useCart";
 
 function Cart() {
-  const [cartItems, setCartItems] = useRecoilState(cartState);
+  const cartItems = useRecoilValue(cartState);
+  const { onAdd, onRemove } = useCart();
 
-  const { onAdd } = useCart();
+  console.log(cartItems);
+
+  const totalPrice = cartItems.reduce(
+    (acc, curr) => acc + curr.price * curr.qty,
+    0
+  );
 
   return (
-    <Container>
-      <Heading>Cart items</Heading>
+    <Container size="md">
+      <Heading fontSize="lg" mt="2em" textAlign="center">Cart</Heading>
       <div>{cartItems.length === 0 && <Text>Cart is empty</Text>}</div>
       {cartItems.map((item) => (
-        <Box key={item.id}>
+        <Flex key={item.id}  alignItems="center" justifyContent="space-between">
           <Text>{item.title}</Text>
-          <Button onClick={() => onAdd(item)}>+</Button>
-          <Button onClick={() => onRemove(item)}>-</Button>
-          <Text>
-            {item.qty} x ${item.price.toFixed(2)}
+          <Text m="2em">
+            {item.qty} x ${item.price}
           </Text>
-        </Box>
+          <Button size="xs" onClick={() => onAdd(item)}>+</Button>
+          <Button size="xs" m="1" onClick={() => onRemove(item)}>-</Button>
+        </Flex>
       ))}
+      <Text fontWeight="bold">Total price: {totalPrice.toFixed(2)}</Text>
     </Container>
   );
 }

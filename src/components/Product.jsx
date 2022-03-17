@@ -10,7 +10,7 @@ function Product() {
   return (
     <>
       {products.map((product) => (
-       <Box bg="GhostWhite" key={product.id} display="flex" alignItems="flex-start">
+       <Box boxShadow="base" bg="GhostWhite" key={product.id} display="flex" alignItems="flex-start">
           <Link to={`/products/${product.id}`}>
             <Center>
               <Image
@@ -21,11 +21,11 @@ function Product() {
                 src={product.image}
               />
             </Center>
-            <Heading fontSize="md">{product.title}</Heading>
-            <Text color="gray.500" fontSize="sm">
+            <Heading m="0.5em" fontSize="md">{product.title}</Heading>
+            <Text m="0.5em" color="gray.500" fontSize="sm">
               {product.description}
             </Text>
-            <Text marginTop="1em" fontWeight="bold" fontSize="sm">${product.price}</Text>
+            <Text m="0.5em"fontWeight="bold" fontSize="sm">${product.price}</Text>
           </Link>
         </Box>
       ))}

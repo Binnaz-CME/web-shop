@@ -7,14 +7,14 @@ function Products() {
   return (
     <Container maxWidth="container.lg">
       <Stack alignItems="center">
-        <Heading>My webshop</Heading>
+        <Heading m="1em">My webshop</Heading>
         <Text>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           Necessitatibus, qui ipsam? Praesentium nulla neque quibusdam non animi
           quia! Voluptatibus inventore quod saepe iusto molestias veritatis quos
           aspernatur eum minus eligendi?
         </Text>
-        <SimpleGrid minChildWidth="250px" gap="3em" padding="3em">
+        <SimpleGrid minChildWidth="200px" gap="2em" padding="3em">
           <Product />
         </SimpleGrid>
       </Stack>
