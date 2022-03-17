@@ -22,10 +22,7 @@ function Product() {
               />
             </Center>
             <Heading m="0.5em" fontSize="md">{product.title}</Heading>
-            <Text m="0.5em" color="gray.500" fontSize="sm">
-              {product.description}
-            </Text>
-            <Text m="0.5em"fontWeight="bold" fontSize="sm">${product.price}</Text>
+            <Text m="0.5em" fontWeight="bold" fontSize="md" color="gray.500" >${product.price}</Text>
           </Link>
         </Box>
       ))}

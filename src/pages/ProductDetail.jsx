@@ -19,7 +19,7 @@ import { selectState } from "../stores/select/atom";
 
 function ProductDetail() {
   const products = useRecoilValue(productsState);
-  const [selectValue, setSelectValue] = useRecoilState(selectState)
+  const [selectValue, setSelectValue] = useRecoilState(selectState);
   const params = useParams();
 
   const product = products.find(
@@ -29,10 +29,8 @@ function ProductDetail() {
   const { onAdd } = useCart();
 
   function handleChange(e) {
-    const value = e.target.value   
-    console.log(value)
-    setSelectValue(parseInt(value))
-    console.log(selectValue)
+    const value = e.target.value;
+    setSelectValue(parseInt(value));
   }
 
   return (
@@ -57,12 +55,18 @@ function ProductDetail() {
               ${product.price}
             </Text>
             <Center>
-              <Button mt="4" onClick={() => onAdd(product)}>
-                <Select autoFocus onChange={handleChange} value={selectValue} placeholder="--Select number of items--">
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                </Select>
+              <Select
+                mt="4"
+                autoFocus
+                onChange={handleChange}
+                value={selectValue}
+                placeholder="--Select number of items--"
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+              </Select>
+              <Button mt="4" ml="2" onClick={() => onAdd(product)}>
                 Add to cart
               </Button>
             </Center>

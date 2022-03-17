@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Text, Heading, Button, Box, Flex, Stack } from "@chakra-ui/react";
+import { Container, Text, Heading, Button, Flex, Image } from "@chakra-ui/react";
 import { cartState } from "../stores/cart/atom";
 import { useRecoilValue } from "recoil";
 import useCart from "../hooks/useCart";
@@ -8,7 +8,9 @@ function Cart() {
   const cartItems = useRecoilValue(cartState);
   const { onAdd, onRemove } = useCart();
 
+
   console.log(cartItems);
+
 
   const totalPrice = cartItems.reduce(
     (acc, curr) => acc + curr.price * curr.qty,
@@ -20,7 +22,13 @@ function Cart() {
       <Heading fontSize="lg" mt="2em" textAlign="center">Cart</Heading>
       <div>{cartItems.length === 0 && <Text>Cart is empty</Text>}</div>
       {cartItems.map((item) => (
-        <Flex key={item.id}  alignItems="center" justifyContent="space-between">
+        <Flex key={item.id}  alignItems="center" justifyContent="start">
+          <Image
+              margin="1em"
+                maxWidth="2.5em"
+                objectFit="fit"
+                src={item.image}
+              />
           <Text>{item.title}</Text>
           <Text m="2em">
             {item.qty} x ${item.price}
