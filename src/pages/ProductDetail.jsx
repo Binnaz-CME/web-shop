@@ -22,12 +22,11 @@ function ProductDetail() {
   const products = useRecoilValue(productsState);
   const [selectValue, setSelectValue] = useRecoilState(selectState);
   const params = useParams();
+  const { onAdd } = useCart();
 
   const product = products.find(
     (product) => product.id === parseInt(params.productId)
   );
-
-  const { onAdd } = useCart();
 
   function handleChange(e) {
     const value = e.target.value;
@@ -60,7 +59,6 @@ function ProductDetail() {
             <Center>
               <Select
                 mt="4"
-                autoFocus
                 onChange={handleChange}
                 value={selectValue}
                 placeholder="--Select number of items--"

@@ -48,7 +48,7 @@ function useCart() {
       saveCart();
     }
   }, [onAdd, onRemove]);
-
+  
   return { onAdd, onRemove, saveCart, loadSavedCart };
 }
 

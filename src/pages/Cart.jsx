@@ -15,7 +15,7 @@ import useCart from "../hooks/useCart";
 
 function Cart() {
   const cartItems = useRecoilValue(cartState);
-  const { onAdd, onRemove, saveCart, loadSavedCart } = useCart();
+  const { onAdd, onRemove } = useCart();
 
   const totalPrice = cartItems.reduce(
     (total, curr) => total + curr.price * curr.qty,
@@ -40,7 +40,7 @@ function Cart() {
             src={item.image}
           />
           <Text fontSize="xs">{item.title}</Text>
-          <Text m="2em">
+          <Text m="0em 1em">
             {item.qty} x ${item.price}
           </Text>
           <Button size="xs" onClick={() => onAdd(item)}>
