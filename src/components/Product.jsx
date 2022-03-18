@@ -1,8 +1,8 @@
 import React from "react";
-import { productsState } from "../stores/products/atom";
 import { useRecoilValue } from "recoil";
 import { Box, Image, Center, Text, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { productsState } from "../stores/products/atom";
 
 function Product() {
   const products = useRecoilValue(productsState);

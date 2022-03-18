@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { productsState } from "../stores/products/atom";
 import { useRecoilValue, useRecoilState } from "recoil";
+import { Helmet } from "react-helmet-async";
 import {
   Box,
   Image,
@@ -14,8 +15,8 @@ import {
   Select,
 } from "@chakra-ui/react";
 
-import useCart from "../hooks/useCart";
 import { selectState } from "../stores/select/atom";
+import useCart from "../hooks/useCart";
 
 function ProductDetail() {
   const products = useRecoilValue(productsState);
@@ -35,6 +36,9 @@ function ProductDetail() {
 
   return (
     <Container maxWidth="container.md" centerContent>
+      <Helmet>
+        <title>{product.title}</title>
+      </Helmet>
       <Box maxW="30rem">
         <Flex alignItems="center" flexDirection="column">
           <Image
@@ -43,7 +47,6 @@ function ProductDetail() {
             objectFit="fit"
             src={product.image}
           />
-
           <Box ml="3">
             <Heading marginBottom="2" fontSize="md">
               {product.title}

@@ -1,4 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import { Helmet } from "react-helmet-async";
 import {
   Container,
   Text,
@@ -7,8 +9,8 @@ import {
   Flex,
   Image,
 } from "@chakra-ui/react";
+
 import { cartState } from "../stores/cart/atom";
-import { useRecoilValue } from "recoil";
 import useCart from "../hooks/useCart";
 
 function Cart() {
@@ -22,8 +24,11 @@ function Cart() {
 
   return (
     <Container size="md">
+      <Helmet>
+        <title>My Cart</title>
+      </Helmet>
       <Heading fontSize="lg" mt="2em" textAlign="center">
-        Cart
+        My Cart
       </Heading>
       <div>{cartItems.length === 0 && <Text>Cart is empty</Text>}</div>
       {cartItems.map((item) => (
@@ -47,7 +52,6 @@ function Cart() {
         </Flex>
       ))}
       <Text fontWeight="bold">Total price: ${totalPrice.toFixed(2)}</Text>
-      
     </Container>
   );
 }

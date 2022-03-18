@@ -1,21 +1,20 @@
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
+import { useEffect } from "react";
 
 import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
-import { useEffect } from "react";
-import useCart from "./hooks/useCart";
-
 import Nav from "./components/Nav";
+
+import useCart from "./hooks/useCart";
 
 function App() {
   const { loadSavedCart } = useCart();
 
   useEffect(() => {
     loadSavedCart();
-  }, [])
+  }, []);
 
   return (
     <div>
