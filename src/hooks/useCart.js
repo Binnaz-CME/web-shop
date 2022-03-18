@@ -1,11 +1,11 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartState } from "../stores/cart/atom";
 import { selectState } from "../stores/select/atom";
 
 function useCart() {
   const [cartItems, setCartItems] = useRecoilState(cartState);
-  const [selectValue, setSelectValue] = useRecoilState(selectState);
+  const selectValue = useRecoilValue(selectState);
 
   function onAdd(chosenProduct) {
     const exist = cartItems.find((item) => item.id === chosenProduct.id);
@@ -33,7 +33,22 @@ function useCart() {
     }
   }
 
-  return { onAdd, onRemove };
+  function saveCart() {
+    const savedCart = JSON.stringify(cartItems);
+    localStorage.setItem("savedCart", savedCart);
+  }
+
+  function loadSavedCart() {
+    const loadCart = JSON.parse(localStorage.getItem("savedCart"));
+    setCartItems(loadCart);
+  }
+
+  useEffect(() => {
+    saveCart();
+  }, [onAdd, onRemove])
+ 
+
+  return { onAdd, onRemove, saveCart, loadSavedCart };
 }
 
 export default useCart;

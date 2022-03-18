@@ -5,11 +5,18 @@ import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+import useCart from "./hooks/useCart";
 
 import Nav from "./components/Nav";
 
 function App() {
-  
+  const { loadSavedCart } = useCart();
+
+  useEffect(() => {
+    loadSavedCart();
+  }, [])
+
   return (
     <div>
       <Nav />

@@ -14,7 +14,7 @@ function Products() {
           quia! Voluptatibus inventore quod saepe iusto molestias veritatis quos
           aspernatur eum minus eligendi?
         </Text>
-        <SimpleGrid minChildWidth="200px" gap="2em" padding="3em">
+        <SimpleGrid minChildWidth="180px" gap="1.5em" padding="3em">
           <Product />
         </SimpleGrid>
       </Stack>
