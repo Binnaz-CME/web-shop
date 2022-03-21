@@ -14,6 +14,7 @@ function Nav() {
   const [totalItems, setTotalItems] = useRecoilState(totalCartItems);
 
   useEffect(() => {
+    if (cartItems === null) return;
     const total = cartItems.reduce((total, curr) => total + curr.qty, 0);
     setTotalItems(total);
   }, [cartItems]);
@@ -38,7 +39,9 @@ function Nav() {
         <Link to="/cart">
           <img src={cart} width="50px" />
         </Link>
-        <Text>({totalItems})</Text>
+        <Link to="/cart">
+          <Text>({totalItems})</Text>
+        </Link>
       </Stack>
     </Box>
   );

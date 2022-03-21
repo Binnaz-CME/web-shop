@@ -39,16 +39,17 @@ function useCart() {
   }
 
   function loadSavedCart() {
+    if (localStorage.getItem("savedCart") === null) return;
     const loadCart = JSON.parse(localStorage.getItem("savedCart"));
-      setCartItems(loadCart);
+    setCartItems(loadCart);
   }
 
   useEffect(() => {
-    if (cartItems.length !== 0) {
+    if(cartItems?.length) {
       saveCart();
     }
   }, [onAdd, onRemove]);
-  
+
   return { onAdd, onRemove, saveCart, loadSavedCart };
 }
 
