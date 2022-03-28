@@ -7,7 +7,7 @@ import logo from "../assets/b-akyuz-logo.png";
 import cart from "../assets/cart.png";
 
 import { cartState } from "../stores/cart/atom";
-import { totalCartItems } from "../stores/totalItems.js/atom";
+import { totalCartItems } from "../stores/totalItems/atom";
 
 function Nav() {
   const cartItems = useRecoilValue(cartState);
@@ -35,7 +35,9 @@ function Nav() {
         alignItems="center"
         mr="1em"
       >
-        <Link to="/">Products</Link>
+        <Link to="/">Home</Link>
+        <Link to="/products">Products</Link>
+        <Link to="/login">Login</Link>
         <Link to="/cart">
           <img src={cart} width="50px" />
         </Link>
