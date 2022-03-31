@@ -1,21 +1,31 @@
-import React, { useRef } from "react";
-import { Box, Image, Center, Text, Heading } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { Box, Image, Center, Text, Heading, Spinner } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch";
+import useFetch from "../hooks/useFetch";
+import getProducts from "../api/api.js";
 
 function Product() {
-  const isComponentMounted = useRef(true);
-
   const { products, loading, error } = useFetch(
-    "https://k4backend.osuka.dev/products",
-    isComponentMounted,
-    []
+    "https://k4backend.osuka.dev/products"
   );
+
+  if (error)
+    return (
+      <Heading color="red">
+        Something went wrong while getting products... Please Try again
+      </Heading>
+    );
 
   return (
     <>
       {loading ? (
-        <div>Loading data...</div>
+        <Spinner
+          size="xl"
+          thickness="5px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="black"
+        />
       ) : (
         products.map((product) => (
           <Box

@@ -1,31 +1,42 @@
-import { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useState, useEffect, useRef } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { productsState } from "../stores/products/atom";
+import { authState } from "../stores/auth/atom";
 import axios from "axios";
 
-export const useFetch = (url, ref, initialValue) => {
+function useFetch(url) {
   const [products, setProducts] = useRecoilState(productsState);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (ref.current) {
-      (async () => {
-        try {
-          const res = await axios(url);
-          setProducts(res.data);
-        } catch (err) {
-          setError(err);
-        } finally {
-          setLoading(false);
-        }
-      })();
+  async function fetchProducts() {
+    try {
+      const res = await axios.get(url);
+      setProducts(res.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
     }
-    return () => {
-      ref.current = false;
-    };
-  }, [url, ref]);
-  return { loading, products, error };
-};
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  async function fetchData(body) {
+    try {
+      const response = await axios(body);
+      const { data } = response;
+      return data
+    } catch (err) {
+      console.log(err);
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+  return { loading, products, error, fetchData };
+}
 
 export default useFetch;

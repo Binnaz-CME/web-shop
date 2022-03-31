@@ -8,7 +8,7 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register"
 import NotFound from "./pages/NotFound";
-// import MyPage from "./pages/MyPage";
+import MyPage from "./pages/MyPage";
 import Nav from "./components/Nav";
 import Footer from './components/Footer'
 
@@ -30,7 +30,7 @@ function App() {
         <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* <Route path="/login/:user" element={<MyPage />} /> */}
+        <Route path="/mypage" element={<MyPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

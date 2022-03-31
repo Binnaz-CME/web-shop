@@ -3,6 +3,8 @@ import LoginInput from "../components/LoginInput";
 import { Heading } from "@chakra-ui/layout";
 
 function Login() {
+  
+
   return (
     <div>
       <LoginInput />
