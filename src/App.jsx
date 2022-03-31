@@ -6,11 +6,11 @@ import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
-import Register from "./pages/Register"
+import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import MyPage from "./pages/MyPage";
 import Nav from "./components/Nav";
-import Footer from './components/Footer'
+import Footer from "./components/Footer";
 
 import useCart from "./hooks/useCart";
 

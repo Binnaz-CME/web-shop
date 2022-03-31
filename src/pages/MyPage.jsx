@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { userState, authState } from "../stores/auth/atom";
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router";
 import { Button } from "@chakra-ui/button";
-import { Heading, VStack, Center } from "@chakra-ui/react";
+import { Heading, VStack, Spinner } from "@chakra-ui/react";
 
 function MyPage() {
   const [user, setUser] = useRecoilState(userState);
@@ -13,7 +13,7 @@ function MyPage() {
   const navigate = useNavigate();
 
   if (!token) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   useEffect(() => {
@@ -31,8 +31,8 @@ function MyPage() {
     return <div>Loading...</div>;
   }
 
-  function handleLogout(){
-    navigate('/')
+  function handleLogout() {
+    navigate("/");
     setToken("");
   }
 

@@ -1,12 +1,12 @@
-import React from 'react'
-import RegisterInput from '../components/RegisterInput'
+import React from "react";
+import RegisterInput from "../components/RegisterInput";
 
 function Register() {
   return (
     <div>
-        <RegisterInput />
+      <RegisterInput />
     </div>
-  )
+  );
 }
 
-export default Register
+export default Register;

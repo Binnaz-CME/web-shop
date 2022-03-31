@@ -45,7 +45,7 @@ function useCart() {
   }
 
   useEffect(() => {
-    if(cartItems?.length) {
+    if (cartItems?.length) {
       saveCart();
     }
   }, [onAdd, onRemove]);

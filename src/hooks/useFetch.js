@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
 import { productsState } from "../stores/products/atom";
-import { authState } from "../stores/auth/atom";
 import axios from "axios";
 
 function useFetch(url) {
@@ -28,7 +27,7 @@ function useFetch(url) {
     try {
       const response = await axios(body);
       const { data } = response;
-      return data
+      return data;
     } catch (err) {
       console.log(err);
       setError(err);

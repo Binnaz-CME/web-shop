@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Box, Image, Center, Text, Heading, Spinner } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import getProducts from "../api/api.js";
 
 function Product() {
   const { products, loading, error } = useFetch(

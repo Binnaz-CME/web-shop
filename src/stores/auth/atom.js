@@ -7,15 +7,15 @@ export const authState = atom({
 
 export const userState = atom({
   key: "user",
-  default: null
+  default: null,
 });
 
 export const usernameState = atom({
-  key: 'username',
-  default: ''
-})
+  key: "username",
+  default: "",
+});
 
 export const passwordState = atom({
-  key: 'password',
-  default: ''
-})
+  key: "password",
+  default: "",
+});

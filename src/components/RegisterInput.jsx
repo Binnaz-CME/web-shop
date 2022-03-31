@@ -12,7 +12,6 @@ import {
   Button,
   Heading,
   Text,
-  Spinner,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { userState } from "../stores/auth/atom";
@@ -22,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function RegisterInput() {
   const [showPassword, setShowPassword] = useState(false);
-  const { fetchData, loading, error } = useFetch();
+  const { fetchData } = useFetch();
   const [user, setUser] = useRecoilState(userState);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -62,12 +61,10 @@ export default function RegisterInput() {
       },
     });
     setUser(data);
-    console.log(data);
     if (data.id) {
       navigate("/login");
     }
   }
-console.log(error)
 
   function renderSignUpForm() {
     return (
@@ -216,5 +213,5 @@ console.log(error)
     );
   }
 
-  return <>{loading ? <Spinner /> : <main>{renderSignUpForm()}</main>}</>;
+  return <main>{renderSignUpForm()}</main>;
 }
