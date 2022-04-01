@@ -1,10 +1,9 @@
 import React from "react";
 import { Container, Heading, Text, Stack, SimpleGrid } from "@chakra-ui/react";
 import { Helmet } from "react-helmet-async";
-
 import Product from "../components/Product";
 
-function Products() {
+function Products({ loading, error }) {
   return (
     <Container maxWidth="container.lg">
       <Helmet>
@@ -19,7 +18,7 @@ function Products() {
           aspernatur eum minus eligendi?
         </Text>
         <SimpleGrid minChildWidth="180px" gap="1.5em" padding="3em">
-          <Product />
+          <Product loading={loading} error={error} />
         </SimpleGrid>
       </Stack>
     </Container>

@@ -1,4 +1,5 @@
 import { Container, Stack, Heading, Text, Image } from "@chakra-ui/react";
+import commerceImage from "../assets/commerce.webp";
 
 export default function Home() {
   return (
@@ -25,14 +26,14 @@ export default function Home() {
                 position: "absolute",
                 bottom: 1,
                 left: 0,
-                bg: "red.400",
+                bg: "peachpuff",
                 zIndex: -1,
               }}
             >
               The webshop for,
             </Text>
             <br />
-            <Text as={"span"} color={"red.400"}>
+            <Text as={"span"} color={"peachpuff"}>
               everything and nothing!
             </Text>
           </Heading>
@@ -43,16 +44,16 @@ export default function Home() {
             porro reprehenderit. Ratione, id soluta.
           </Text>
         </Stack>
-        <Image
-          alt={"Hero Image"}
-          fit={"cover"}
-          align={"center"}
-          w={"100%"}
-          h={"100%"}
-          src={
-            "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-          }
-        />
+        <Container maxW="container.lg">
+          <Image
+            alt={"Hero Image"}
+            fit={"cover"}
+            align={"center"}
+            maxW={"100%"}
+            maxH={"100%"}
+            src={commerceImage}
+          />
+        </Container>
       </Stack>
     </Container>
   );

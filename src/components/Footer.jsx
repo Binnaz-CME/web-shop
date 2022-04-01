@@ -19,7 +19,7 @@ export default function Footer() {
         base: "6",
         md: "10",
       }}
-      background="peachpuff"
+      background="#a6a6a6"
       maxW="100vw"
     >
       <Stack
@@ -52,7 +52,7 @@ export default function Footer() {
           </ButtonGroup>
         </Stack>
         <Text fontSize="sm" color="subtle">
-          &copy; {new Date().getFullYear()} Chakra UI Pro, Inc. All rights
+          &copy; {new Date().getFullYear()} Binnaz Akyüz. All rights
           reserved.
         </Text>
       </Stack>

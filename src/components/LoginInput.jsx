@@ -1,8 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { authState, passwordState, usernameState } from "../stores/auth/atom";
-import useFetch from "../hooks/useFetch";
-import { Link, useNavigate } from "react-router-dom";
+import { passwordState, usernameState } from "../stores/auth/atom";
+import { Link } from "react-router-dom";
 import {
   Flex,
   Box,
@@ -17,27 +16,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export default function LoginInput() {
+export default function LoginInput({ handleLogin }) {
   const [username, setUsername] = useRecoilState(usernameState);
   const [password, setPassword] = useRecoilState(passwordState);
-  const [token, setToken] = useRecoilState(authState);
-  const { fetchData } = useFetch();
-  const navigate = useNavigate();
-
-  async function handleLogin() {
-    const data = await fetchData({
-      method: "post",
-      url: "https://k4backend.osuka.dev/auth/login",
-      data: {
-        username: username,
-        password: password,
-      },
-    });
-    setToken(data);
-    if (data.token) {
-      navigate("/mypage");
-    }
-  }
 
   return (
     <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"snow"}>

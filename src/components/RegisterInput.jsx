@@ -36,8 +36,6 @@ export default function RegisterInput() {
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
 
-  console.log(user);
-
   async function createUser() {
     const data = await fetchData({
       method: "post",
@@ -128,15 +126,15 @@ export default function RegisterInput() {
                   />
                 </FormControl>
               </HStack>
+              <FormControl name="address" isRequired>
+                <FormLabel>Street</FormLabel>
+                <Input
+                  type="text"
+                  value={street}
+                  onChange={(e) => setStreet(e.target.value)}
+                />
+              </FormControl>
               <HStack>
-                <FormControl name="address" isRequired>
-                  <FormLabel>Street</FormLabel>
-                  <Input
-                    type="text"
-                    value={street}
-                    onChange={(e) => setStreet(e.target.value)}
-                  />
-                </FormControl>
                 <FormControl name="number" isRequired>
                   <FormLabel>Number</FormLabel>
                   <Input
@@ -146,7 +144,7 @@ export default function RegisterInput() {
                   />
                 </FormControl>
                 <FormControl name="zipcode" isRequired>
-                  <FormLabel>Zip-code</FormLabel>
+                  <FormLabel>Zip</FormLabel>
                   <Input
                     type="number"
                     value={zipcode}

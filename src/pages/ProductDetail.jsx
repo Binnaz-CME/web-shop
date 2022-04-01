@@ -3,20 +3,20 @@ import { useParams } from "react-router-dom";
 import { productsState } from "../stores/products/atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { Helmet } from "react-helmet-async";
+import ButtonComp from "../components/ButtonComp";
+import { selectState } from "../stores/select/atom";
+import useCart from "../hooks/useCart";
 import {
   Box,
   Image,
   Heading,
   Text,
-  Button,
   Flex,
   Container,
   Center,
   Select,
+  Spinner,
 } from "@chakra-ui/react";
-
-import { selectState } from "../stores/select/atom";
-import useCart from "../hooks/useCart";
 
 function ProductDetail() {
   const products = useRecoilValue(productsState);
@@ -32,6 +32,8 @@ function ProductDetail() {
     const value = e.target.value;
     setSelectValue(parseInt(value));
   }
+
+  if (!product) return <Spinner />;
 
   return (
     <Container maxWidth="container.md" centerContent>
@@ -53,12 +55,16 @@ function ProductDetail() {
             <Text color="gray.500" fontSize="sm">
               {product.description}
             </Text>
-            <Text marginTop="1em" fontWeight="bold" fontSize="m">
+            <Text
+              marginTop="1em"
+              marginBottom="1em"
+              fontWeight="bold"
+              fontSize="m"
+            >
               ${product.price}
             </Text>
             <Center>
               <Select
-                mt="4"
                 onChange={handleChange}
                 value={selectValue}
                 placeholder="--Select number of items--"
@@ -67,9 +73,14 @@ function ProductDetail() {
                 <option value={2}>2</option>
                 <option value={3}>3</option>
               </Select>
-              <Button mt="4" ml="2" onClick={() => onAdd(product)}>
+              {/* <Button mt="4" ml="2" onClick={() => onAdd(product)}>
                 Add to cart
-              </Button>
+              </Button> */}
+              <ButtonComp
+                buttontext="Add to cart"
+                margin={0.5}
+                onClick={() => onAdd(product)}
+              />
             </Center>
           </Box>
         </Flex>
