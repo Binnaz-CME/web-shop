@@ -7,7 +7,7 @@ function FilteredProducts() {
   const filteredProducts = useRecoilValue(filteredProductsState);
 
   return (
-    <div>
+    <>
       {filteredProducts.map((product) => (
         <Box
           boxShadow="base"
@@ -36,7 +36,7 @@ function FilteredProducts() {
           </Link>
         </Box>
       ))}
-    </div>
+    </>
   );
 }
 
