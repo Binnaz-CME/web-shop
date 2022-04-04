@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoginInput from "../components/LoginInput";
 import { useRecoilState, useRecoilValue } from "recoil";
 import useFetch from "../hooks/useFetch";
@@ -20,6 +20,7 @@ function Login() {
   const navigate = useNavigate();
 
   async function handleLogin() {
+    let mounted = true;
     const data = await fetchData({
       method: "post",
       url: "https://k4backend.osuka.dev/auth/login",
@@ -40,11 +41,11 @@ function Login() {
     getUser();
   }
 
-  if (token.token && user && user.role === "admin") {
-    navigate("/admin");
-  } else if (token.token && user && user.role === "user") {
-    navigate("/profile");
-  }
+  useEffect(() => {
+    if (token.token) {
+      navigate("/profile");
+    }
+  }, [token]);
 
   return (
     <div>

@@ -9,7 +9,6 @@ import {
   Flex,
   Image,
 } from "@chakra-ui/react";
-
 import { cartState } from "../stores/cart/atom";
 import useCart from "../hooks/useCart";
 
