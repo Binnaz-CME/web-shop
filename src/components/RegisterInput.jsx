@@ -11,13 +11,12 @@ import {
   Stack,
   Button,
   Heading,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { userState } from "../stores/auth/atom";
 import useFetch from "../hooks/useFetch";
 import { useRecoilState } from "recoil";
-import { useNavigate } from "react-router-dom";
 
 export default function RegisterInput() {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,7 +33,6 @@ export default function RegisterInput() {
   const [number, setNumber] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [phone, setPhone] = useState("");
-  const navigate = useNavigate();
 
   async function createUser() {
     const data = await fetchData({
@@ -59,10 +57,6 @@ export default function RegisterInput() {
       },
     });
     setUser(data);
-    
-    if (data.id) {
-      navigate("/login");
-    }
   }
 
   function renderSignUpForm() {
@@ -212,5 +206,10 @@ export default function RegisterInput() {
     );
   }
 
-  return <main>{renderSignUpForm()}</main>;
+  
+  return (
+    <main>
+      {renderSignUpForm()}
+    </main>
+  );
 }
