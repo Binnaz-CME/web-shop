@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Product from "../components/Product";
 import FilteredProducts from "../components/FilteredProducts";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState, useResetRecoilState } from "recoil";
 import { filteredProductsState, productsState } from "../stores/products/atom";
 import ButtonComp from "../components/ButtonComp";
 import {
@@ -16,12 +16,12 @@ import {
 
 function Products({ loading, error }) {
   const products = useRecoilValue(productsState);
+  const resetFilteredProducts = useResetRecoilState(filteredProductsState)
   const [filteredProducts, setFilteredProducts] = useRecoilState(
     filteredProductsState
   );
 
   function filterByCategory(category) {
-    setFilteredProducts(null);
     const data = products.filter((product) => product.category === category);
     setFilteredProducts(data);
   }
@@ -42,9 +42,7 @@ function Products({ loading, error }) {
         <HStack>
           <ButtonComp
             buttontext="All Products"
-            onClick={() => {
-              setFilteredProducts(null);
-            }}
+            onClick={resetFilteredProducts}
           />
           <ButtonComp
             buttontext="Electronics"
