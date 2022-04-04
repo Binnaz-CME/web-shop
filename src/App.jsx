@@ -19,7 +19,7 @@ import useFetch from "./hooks/useFetch";
 function App() {
   const { loadSavedCart } = useCart();
 
-  const { products, loading, error } = useFetch(
+  const { loading, error } = useFetch(
     "https://k4backend.osuka.dev/products"
   );
 

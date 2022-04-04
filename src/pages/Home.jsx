@@ -1,9 +1,14 @@
-import { Container, Stack, Heading, Text, Image } from "@chakra-ui/react";
+import React from "react";
+import { Helmet } from "react-helmet-async";
 import commerceImage from "../assets/commerce.webp";
+import { Container, Stack, Heading, Text, Image } from "@chakra-ui/react";
 
 export default function Home() {
   return (
     <Container maxW={"7xl"}>
+      <Helmet>
+        <title>Webshop</title>
+      </Helmet>
       <Stack
         align={"center"}
         spacing={{ base: 8, md: 10 }}

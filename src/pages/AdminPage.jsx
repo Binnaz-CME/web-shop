@@ -10,20 +10,24 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { authState } from "../stores/auth/atom";
-import AdminNav from "../components/AdminNav";
-import ButtonComp from "../components/ButtonComp";
 import { useRecoilValue } from "recoil";
 import { productsState } from "../stores/products/atom";
+import AdminNav from "../components/AdminNav";
+import ButtonComp from "../components/ButtonComp";
+import { Helmet } from "react-helmet-async";
 
 function adminPage() {
   const token = useRecoilValue(authState);
   const products = useRecoilValue(productsState);
 
-  if(!token) return <div>Please login</div>
+  if (!token) return <Heading>Please login</Heading>;
 
   return (
     <main>
       <AdminNav />
+      <Helmet>
+        <title>Admin - products</title>
+      </Helmet>
       <SimpleGrid minChildWidth="180px" gap="1.5em" padding="3em">
         {products.map((product) => (
           <Box

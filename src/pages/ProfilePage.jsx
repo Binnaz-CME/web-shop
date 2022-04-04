@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState, authState } from "../stores/auth/atom";
 import useFetch from "../hooks/useFetch";
+import { Helmet } from "react-helmet-async";
 import { Heading, Stack, Spinner, Flex, Text, Box } from "@chakra-ui/react";
 
 function ProfilePage() {
@@ -9,15 +10,15 @@ function ProfilePage() {
   const { fetchData } = useFetch();
   const token = useRecoilValue(authState);
 
-  if (!token) return <div>Please login</div>;
+  if (!token) return <Heading>Please login</Heading>;
 
   useEffect(() => {
     async function getUser() {
-      const data = await fetchData({
+      const userData = await fetchData({
         method: "get",
         url: `https://k4backend.osuka.dev/users/${token.userId}`,
       });
-      setUser(data);
+      setUser(userData);
     }
     getUser();
   }, []);
@@ -28,9 +29,14 @@ function ProfilePage() {
 
   return (
     <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"snow"}>
+      <Helmet>
+        <title>My Profile</title>
+      </Helmet>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"} flexDirection="row">
-          <Heading fontSize={"4xl"} mr="1em">Profile</Heading>
+          <Heading fontSize={"4xl"} mr="1em">
+            Profile
+          </Heading>
         </Stack>
         <Box rounded={"lg"} bg={"white"} boxShadow={"lg"} p={8}>
           <Stack spacing={4}>

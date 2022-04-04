@@ -1,15 +1,15 @@
 import React from "react";
 import LoginInput from "../components/LoginInput";
 import { useRecoilState, useRecoilValue } from "recoil";
+import useFetch from "../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   authState,
   passwordState,
   usernameState,
   userState,
 } from "../stores/auth/atom";
-import useFetch from "../hooks/useFetch";
-import { useNavigate } from "react-router-dom";
-import { Spinner } from "@chakra-ui/react";
 
 function Login() {
   const username = useRecoilValue(usernameState);
@@ -38,10 +38,6 @@ function Login() {
       setUser(userData);
     }
     getUser();
-
-    // if (!user || !token) {
-    //   return <Spinner />;
-    // }
   }
 
   if (token.token && user && user.role === "admin") {
@@ -52,6 +48,9 @@ function Login() {
 
   return (
     <div>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <LoginInput handleLogin={handleLogin} />
     </div>
   );

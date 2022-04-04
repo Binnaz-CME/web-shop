@@ -59,6 +59,7 @@ export default function RegisterInput() {
       },
     });
     setUser(data);
+    
     if (data.id) {
       navigate("/login");
     }

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import AdminNav from "../components/AdminNav";
 import useFetch from "../hooks/useFetch";
 import { nanoid } from "nanoid";
+import { useRecoilValue } from "recoil";
+import { authState } from "../stores/auth/atom";
+import { Helmet } from "react-helmet-async";
 import {
   Heading,
   VStack,
@@ -15,7 +18,10 @@ import {
 
 function AdminUsers() {
   const [allUsers, setAllUsers] = useState([]);
+  const token = useRecoilValue(authState);
   const { fetchData, loading } = useFetch();
+
+  if (!token) return <Heading>Please login</Heading>;
 
   useEffect(() => {
     async function getAllUsers() {
@@ -44,6 +50,9 @@ function AdminUsers() {
   return (
     <div>
       <AdminNav />
+      <Helmet>
+        <title>Admin - Users</title>
+      </Helmet>
       <Flex justifyContent="center" alignItems="flex-start">
         <VStack alignItems="flex-start">
           <Heading>Users</Heading>
